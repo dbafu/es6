@@ -25,7 +25,17 @@ $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 ```bash
 
-cnpm i babel-core babel-loader babel-plugin-transform-decorators-legacy babel-polyfill babel-preset-env babel-preset-es2015 connect-livereload del gulp gulp-concat gulp-if gulp-live-server gulp-livereload gulp-plumber gulp-rename gulp-sequence gulp-uglify gulp-util jquery require-dir vinyl-named webpack webpack-stream yargs express serve-favicon morgan cookie-parser mockjs ejs 
+cnpm i babel-core babel-loader babel-plugin-transform-decorators-legacy babel-polyfill babel-preset-env babel-preset-es2015 connect-livereload del gulp gulp-concat gulp-if gulp-live-server gulp-livereload gulp-plumber gulp-rename gulp-sequence gulp-uglify gulp-util jquery require-dir vinyl-named webpack webpack-stream yargs express serve-favicon morgan cookie-parser mockjs ejs connect-livereload --save-dev
+```
+
+修改 `server/app.js` , 注意代码位置不要错，否则不起作用。
+```
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 热更新的实现
+app.use(require('connect-livereload')());
+
+app.use('/', index);
 ```
 
 4 在项目根目录运行一下
